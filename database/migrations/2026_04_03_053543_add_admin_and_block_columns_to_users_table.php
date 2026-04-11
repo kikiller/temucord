@@ -9,15 +9,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('is_admin')->default(false)->after('password');
-            $table->timestamp('blocked_at')->nullable()->after('is_admin');
+            $table->boolean('is_global_admin')->default(false)->after('password');
+            $table->timestamp('blocked_at')->nullable()->after('is_global_admin');
         });
     }
 
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['is_admin', 'blocked_at']);
+            $table->dropColumn(['is_global_admin', 'blocked_at']);
         });
     }
 };
