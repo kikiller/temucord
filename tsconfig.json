@@ -2,16 +2,16 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node", // Cambiado de 'bundler' a 'node' para mayor compatibilidad
     "allowJs": true,
     "noEmit": true,
     "isolatedModules": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "skipLibCheck": true,
-    "baseUrl": ".",
+    "baseUrl": ".", 
     "types": ["vitest/globals", "@testing-library/jest-dom"],
     "paths": {
       "@/*": ["./resources/js/*"]

@@ -12,57 +12,71 @@ import { store } from '@/routes/register';
 export default function Register() {
     return (
         <>
-            <Head title="Register" />
+            <Head title="Create account" />
+
             <Form
                 {...store.form()}
                 resetOnSuccess={['password', 'password_confirmation']}
                 disableWhileProcessing
-                className="flex flex-col gap-6"
+                className="flex flex-col gap-5 sm:gap-6"
             >
                 {({ processing, errors }) => (
                     <>
-                        <div className="grid gap-6">
-                            <div className="grid gap-2">
-                                <Label htmlFor="name">Name</Label>
-                                <Input
-                                    id="name"
-                                    type="text"
-                                    required
-                                    autoFocus
-                                    tabIndex={1}
-                                    autoComplete="name"
-                                    name="name"
-                                    placeholder="Full name"
-                                />
-                                <InputError
-                                    message={errors.name}
-                                    className="mt-2"
-                                />
-                            </div>
-
+                        <div className="grid gap-5 sm:gap-6">
                             <div className="grid gap-2">
                                 <Label htmlFor="email">Email address</Label>
                                 <Input
                                     id="email"
                                     type="email"
-                                    required
-                                    tabIndex={2}
-                                    autoComplete="email"
                                     name="email"
+                                    required
+                                    autoFocus
+                                    tabIndex={1}
+                                    autoComplete="email"
                                     placeholder="email@example.com"
+                                    className="h-11 w-full rounded-xl"
                                 />
                                 <InputError message={errors.email} />
+                            </div>
+
+                            <div className="grid gap-2">
+                                <Label htmlFor="username">Username</Label>
+                                <Input
+                                    id="username"
+                                    type="text"
+                                    name="username"
+                                    required
+                                    tabIndex={2}
+                                    autoComplete="username"
+                                    placeholder="yourusername"
+                                    className="h-11 w-full rounded-xl"
+                                />
+                                <InputError message={errors.username} />
+                            </div>
+
+                            <div className="grid gap-2">
+                                <Label htmlFor="birth_date">Birth date</Label>
+                                <Input
+                                    id="birth_date"
+                                    type="date"
+                                    name="birth_date"
+                                    required
+                                    tabIndex={3}
+                                    className="h-11 w-full rounded-xl"
+                                />
+                                <InputError message={errors.birth_date} />
                             </div>
 
                             <div className="grid gap-2">
                                 <Label htmlFor="password">Password</Label>
                                 <PasswordInput
                                     id="password"
-                                    required
-                                    tabIndex={3}
-                                    autoComplete="new-password"
                                     name="password"
+                                    required
+                                    tabIndex={4}
+                                    autoComplete="new-password"
                                     placeholder="Password"
+                                    className="h-11 w-full rounded-xl"
                                 />
                                 <InputError message={errors.password} />
                             </div>
@@ -73,11 +87,12 @@ export default function Register() {
                                 </Label>
                                 <PasswordInput
                                     id="password_confirmation"
-                                    required
-                                    tabIndex={4}
-                                    autoComplete="new-password"
                                     name="password_confirmation"
+                                    required
+                                    tabIndex={5}
+                                    autoComplete="new-password"
                                     placeholder="Confirm password"
+                                    className="h-11 w-full rounded-xl"
                                 />
                                 <InputError
                                     message={errors.password_confirmation}
@@ -86,8 +101,8 @@ export default function Register() {
 
                             <Button
                                 type="submit"
-                                className="mt-2 w-full"
-                                tabIndex={5}
+                                className="mt-2 h-11 w-full rounded-xl sm:h-12"
+                                tabIndex={6}
                                 data-test="register-user-button"
                             >
                                 {processing && <Spinner />}
@@ -97,7 +112,7 @@ export default function Register() {
 
                         <div className="text-center text-sm text-muted-foreground">
                             Already have an account?{' '}
-                            <TextLink href={login()} tabIndex={6}>
+                            <TextLink href={login()} tabIndex={7}>
                                 Log in
                             </TextLink>
                         </div>
@@ -109,6 +124,6 @@ export default function Register() {
 }
 
 Register.layout = {
-    title: 'Create an account',
-    description: 'Enter your details below to create your account',
+    title: 'Create your account',
+    description: 'Enter your information below to create your account',
 };

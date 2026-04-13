@@ -8,18 +8,14 @@ use Inertia\Middleware;
 class HandleInertiaRequests extends Middleware
 {
     /**
-     * The root template that's loaded on the first page visit.
-     *
-     * @see https://inertiajs.com/server-side-setup#root-template
+     * The root template that is loaded on the first page visit.
      *
      * @var string
      */
     protected $rootView = 'app';
 
     /**
-     * Determines the current asset version.
-     *
-     * @see https://inertiajs.com/asset-versioning
+     * Determine the current asset version.
      */
     public function version(Request $request): ?string
     {
@@ -29,19 +25,26 @@ class HandleInertiaRequests extends Middleware
     /**
      * Define the props that are shared by default.
      *
-     * @see https://inertiajs.com/shared-data
-     *
      * @return array<string, mixed>
      */
     public function share(Request $request): array
     {
         return [
             ...parent::share($request),
-            'name' => config('app.name'),
             'auth' => [
-                'user' => $request->user(),
+                'user' => $request->user()
+                    ? [
+                        'id' => $request->user()->id,
+                        'name' => $request->user()->username,
+                        'username' => $request->user()->username,
+                        'email' => $request->user()->email,
+                        'birth_date' => $request->user()->birth_date,
+                        'is_global_admin' => $request->user()->is_global_admin,
+                        'blocked_at' => $request->user()->blocked_at,
+                        'email_verified_at' => $request->user()->email_verified_at,
+                    ]
+                    : null,
             ],
-            'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
         ];
     }
 }

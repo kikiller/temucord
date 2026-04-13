@@ -26,14 +26,20 @@ export default function Login({
         <>
             <Head title="Log in" />
 
+            {status && (
+                <div className="mb-4 rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3 text-center text-sm font-medium text-green-600">
+                    {status}
+                </div>
+            )}
+
             <Form
                 {...store.form()}
                 resetOnSuccess={['password']}
-                className="flex flex-col gap-6"
+                className="flex flex-col gap-5 sm:gap-6"
             >
                 {({ processing, errors }) => (
                     <>
-                        <div className="grid gap-6">
+                        <div className="grid gap-5 sm:gap-6">
                             <div className="grid gap-2">
                                 <Label htmlFor="email">Email address</Label>
                                 <Input
@@ -45,6 +51,7 @@ export default function Login({
                                     tabIndex={1}
                                     autoComplete="email"
                                     placeholder="email@example.com"
+                                    className="h-11 w-full rounded-xl"
                                 />
                                 <InputError message={errors.email} />
                             </div>
@@ -62,6 +69,7 @@ export default function Login({
                                         </TextLink>
                                     )}
                                 </div>
+
                                 <PasswordInput
                                     id="password"
                                     name="password"
@@ -69,6 +77,7 @@ export default function Login({
                                     tabIndex={2}
                                     autoComplete="current-password"
                                     placeholder="Password"
+                                    className="h-11 w-full rounded-xl"
                                 />
                                 <InputError message={errors.password} />
                             </div>
@@ -84,7 +93,7 @@ export default function Login({
 
                             <Button
                                 type="submit"
-                                className="mt-4 w-full"
+                                className="mt-2 h-11 w-full rounded-xl sm:h-12"
                                 tabIndex={4}
                                 disabled={processing}
                                 data-test="login-button"
@@ -105,12 +114,6 @@ export default function Login({
                     </>
                 )}
             </Form>
-
-            {status && (
-                <div className="mb-4 text-center text-sm font-medium text-green-600">
-                    {status}
-                </div>
-            )}
         </>
     );
 }

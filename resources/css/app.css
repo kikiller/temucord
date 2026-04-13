@@ -133,11 +133,18 @@
 }
 
 @layer base {
+    html,
+    body,
+    #app {
+        min-height: 100%;
+    }
+
     * {
         @apply border-border;
     }
 
     body {
         @apply bg-background text-foreground;
+        overflow-x: hidden;
     }
 }
