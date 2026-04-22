@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+    --color-background: oklch(0.145 0 0);
+    --color-foreground: oklch(0.985 0 0);
+    --color-card: oklch(0.145 0 0);
+    --color-border: oklch(0.269 0 0);
+    /* He simplificado a los valores dark que me pasaste para que siempre sea oscuro */
+}
+
+:root {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+}
+
+body {
+    @apply bg-background text-foreground;
+    background-color: #121212; /* Color base oscuro tipo Discord */
+    font-family: 'Instrument Sans', sans-serif;
+}
