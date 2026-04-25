@@ -15,6 +15,7 @@ class Server extends Model
         'description',
         'invite_code',
         'invite_link',
+        'image',
         'invite_qr_path',
     ];
 
