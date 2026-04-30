@@ -10,3 +10,4 @@ Route::get('/status', [StatusController::class, 'index']);
 // Ahora Laravel ya sabe que AuthController se refiere al que está en la carpeta Api
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
+
