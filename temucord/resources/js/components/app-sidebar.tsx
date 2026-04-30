@@ -44,7 +44,7 @@ const footerNavItems: NavItem[] = [
     },
 ];
 
-export function AppSidebar() {
+export function AppSidebar({ onServerClick }: { onServerClick?: (server: any) => void }) {
     const [open, setOpen] = useState(false);
     const [serverName, setServerName] = useState('');
     const [serverImage, setServerImage] = useState<File | null>(null);
@@ -75,18 +75,19 @@ export function AppSidebar() {
 
     return (
         <>
-            <Sidebar collapsible="icon" variant="inset">
+            {/* AQUÍ ESTÁ EL CAMBIO: Quitamos el variant="inset" para quitar la separación */}
+            <Sidebar collapsible="icon" className="border-r-0 bg-[#1e1f22]">
                 <SidebarHeader />
 
                 <SidebarContent className="p-2">
                     <NavMain items={mainNavItems} />
 
-                    <div className="my-3 border-t border-gray-300"></div>
+                    <div className="my-3 border-t border-gray-600/30"></div>
 
                     <SidebarMenu>
                         {servers.map((server: any) => (
                             <SidebarMenuItem key={server.id}>
-                                <SidebarMenuButton>
+                                <SidebarMenuButton onClick={() => onServerClick && onServerClick(server)}>
                                     <div className="flex items-center gap-2">
                                         {server.image && (
                                             <img
