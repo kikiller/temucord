@@ -2,6 +2,10 @@ import { useEffect, useState } from 'react';
 
 import ServerSidebar from './components/ServerSidebar';
 
+import ChannelSidebar from './components/ChannelSidebar';
+
+import ChatArea from './components/ChatArea';
+
 type AuthUser = {
     id: number;
     username: string;
@@ -16,11 +20,14 @@ export default function Dashboard() {
 
     const [activeServer, setActiveServer] = useState<number>(0);
 
+    const [activeChannel, setActiveChannel] = useState<number>(0);
+
     useEffect(() => {
 
         const savedUser = localStorage.getItem('user_data');
 
         if (savedUser) {
+
             setUser(JSON.parse(savedUser));
         }
 
@@ -36,35 +43,26 @@ export default function Dashboard() {
     }
 
     return (
-        <div className="flex h-screen bg-[#09090b] text-white overflow-hidden">
+        <div className="flex h-screen bg-[#1e1f22] text-white overflow-hidden">
 
-            {/* SERVER SIDEBAR */}
+            {/* SERVERS */}
             <ServerSidebar
                 username={user.username}
                 activeServer={activeServer}
                 setActiveServer={setActiveServer}
             />
 
-            {/* MAIN CONTENT */}
-            <main className="flex-1 flex items-center justify-center">
+            {/* CHANNELS */}
+            <ChannelSidebar
+                activeServer={activeServer}
+                activeChannel={activeChannel}
+                setActiveChannel={setActiveChannel}
+            />
 
-                <div className="text-center">
-
-                    <h1 className="text-5xl font-bold mb-4">
-                        Temucord
-                    </h1>
-
-                    <p className="text-zinc-400 text-lg">
-                        Servidor seleccionado:
-                    </p>
-
-                    <p className="text-[#5844a3] text-3xl font-bold mt-3">
-                        {activeServer || 'Ninguno'}
-                    </p>
-
-                </div>
-
-            </main>
+            {/* CHAT */}
+            <ChatArea
+                activeChannel={activeChannel}
+            />
 
         </div>
     );
