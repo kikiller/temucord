@@ -3,30 +3,34 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Server;
+use Illuminate\Support\Facades\DB;
 
 class ServerController extends Controller
 {
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'image' => 'nullable|image|max:2048',
+            'name' => ['required', 'string', 'max:255'],
         ]);
 
-        $imagePath = null;
+        $result = DB::select(
+            'CALL sp_crear_servidor(?, ?, ?, ?, NULL, NULL)',
+            [
+                auth()->id(),
+                $request->name,
+                null,
+                null,
+            ]
+        );
 
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('servers', 'public');
+        $response = $result[0] ?? null;
+
+        if (!$response || $response->p_server_id === null) {
+            return back()->withErrors([
+                'name' => $response->p_message ?? 'No se pudo crear el servidor',
+            ]);
         }
 
-        Server::create([
-            'name' => $request->name,
-            'owner_id' => auth()->id(),
-            'image' => $imagePath,
-        ]);
-
-        return back();
+        return back()->with('success', $response->p_message);
     }
-
 }
