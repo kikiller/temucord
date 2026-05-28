@@ -57,7 +57,7 @@ export default function ChatArea({
             setLoading(true);
 
             const response = await fetch(
-                `http://127.0.0.1:8000/api/channels/${activeChannel}/posts`
+                `http://temucord.local/api/channels/${activeChannel}/posts`
             );
 
             const data = await response.json();
@@ -91,7 +91,7 @@ export default function ChatArea({
             const user = JSON.parse(savedUser);
 
             const response = await fetch(
-                `http://127.0.0.1:8000/api/channels/${activeChannel}/posts`,
+                `http://temucord.local/api/channels/${activeChannel}/posts`,
                 {
                     method: 'POST',
                     headers: {

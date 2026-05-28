@@ -44,7 +44,7 @@ export default function ChannelSidebar({
             setLoading(true);
 
             const response = await fetch(
-                `http://127.0.0.1:8000/api/servers/${activeServer}/channels`
+                `http://temucord.local/api/servers/${activeServer}/channels`
             );
 
             const data = await response.json();
@@ -88,7 +88,7 @@ export default function ChannelSidebar({
             const user = JSON.parse(savedUser);
 
             const response = await fetch(
-                'http://127.0.0.1:8000/api/channels',
+                'http://temucord.local/api/channels',
                 {
                     method: 'POST',
                     headers: {

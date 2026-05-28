@@ -44,7 +44,7 @@ export default function ServerSidebar({
 
         try {
 
-            const response = await fetch('http://127.0.0.1:8000/api/servers');
+            const response = await fetch('http://temucord.local/api/servers');
 
             const data = await response.json();
 
@@ -124,7 +124,7 @@ export default function ServerSidebar({
             }
 
             const response = await fetch(
-                'http://127.0.0.1:8000/api/servers',
+                'http://temucord.local/api/servers',
                 {
                     method: 'POST',
                     body: formData,
@@ -237,7 +237,7 @@ export default function ServerSidebar({
                                     name={server.name}
                                     image={
                                         server.image
-                                            ? `http://127.0.0.1:8000/storage/${server.image}`
+                                            ? `http://temucord.local/storage/${server.image}`
                                             : undefined
                                     }
                                     isActive={activeServer === server.id}

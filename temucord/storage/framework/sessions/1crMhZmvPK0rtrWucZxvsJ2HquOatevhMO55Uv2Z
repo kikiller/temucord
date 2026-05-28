@@ -1,0 +1,1 @@
+{"_token":"hYXLJ5qvBkkNK6ODzLLOut1KK7x4t3HCQ9iSWAZe","_old_input":{"email":"soniko985@gmail.com","username":"kikiller","birth_date":"2002-03-08"},"_flash":{"new":[],"old":["_old_input","errors"]},"errors":{"default":{"format":":message","messages":{"username":["The username has already been taken."],"email":["The email has already been taken."]}}}}
