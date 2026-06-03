@@ -4,6 +4,7 @@ import { router, usePage } from '@inertiajs/react';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
+import { FriendsMenu } from '@/components/FriendsMenu';
 
 import {
     Sidebar,
@@ -44,7 +45,15 @@ const footerNavItems: NavItem[] = [
     },
 ];
 
-export function AppSidebar({ onServerClick }: { onServerClick?: (server: any) => void }) {
+export function AppSidebar({
+    onServerClick,
+    onFriendClick,
+    userId,
+}: {
+    onServerClick?: (server: any) => void;
+    onFriendClick?: (friend: any) => void;
+    userId?: number;
+}) {
     const [open, setOpen] = useState(false);
     const [serverName, setServerName] = useState('');
     const [serverImage, setServerImage] = useState<File | null>(null);
@@ -81,6 +90,12 @@ export function AppSidebar({ onServerClick }: { onServerClick?: (server: any) =>
 
                 <SidebarContent className="p-2">
                     <NavMain items={mainNavItems} />
+                    {userId && (
+                        <FriendsMenu
+                            userId={userId}
+                            onFriendClick={onFriendClick}
+                        />
+                    )}
 
                     <div className="my-3 border-t border-gray-600/30"></div>
 
