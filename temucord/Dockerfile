@@ -31,6 +31,8 @@ RUN chown -R www-data:www-data storage bootstrap/cache
 
 COPY apache.conf /etc/apache2/sites-available/000-default.conf
 
+RUN sed -i 's/Listen 80/Listen ${PORT}/' /etc/apache2/ports.conf
+
 EXPOSE 80
 
 CMD ["apache2-foreground"]
