@@ -1,4 +1,4 @@
-FROM php:8.4-apache-bookworm
+FROM php:8.4-apache
 
 RUN apt-get update && apt-get install -y \
     git \
@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
     zip \
     curl \
     libpq-dev \
-    && docker-php-ext-install pdo_pgsql
+    && docker-php-ext-install pdo pdo_pgsql
 
 RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
 RUN apt-get install -y nodejs
@@ -32,5 +32,3 @@ RUN chown -R www-data:www-data storage bootstrap/cache
 COPY apache.conf /etc/apache2/sites-available/000-default.conf
 
 EXPOSE 80
-
-CMD sed -i "s/Listen 80/Listen ${PORT:-80}/" /etc/apache2/ports.conf && apache2-foreground
