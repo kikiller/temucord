@@ -33,4 +33,4 @@ COPY apache.conf /etc/apache2/sites-available/000-default.conf
 
 EXPOSE 80
 
-CMD php artisan migrate --force && apache2-foreground
+CMD php artisan config:clear && php artisan cache:clear && php artisan route:clear && php artisan view:clear && php artisan migrate --force && apache2-foreground
