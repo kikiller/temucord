@@ -1,5 +1,7 @@
 FROM php:8.4-apache
 
+RUN echo "===== ESTE DOCKERFILE SI SE ESTA USANDO ====="
+
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
